@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import AddEmployee from './pages/add-employee';
+import EditEmployee from './pages/edit-employee';
+import { useState } from 'react';
 
 function App() {
-  return (
+
+    const [employeeToEdit, setEmployeeToEdit] = useState([]);
+
+   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <div className="App-header">
+          <Route path="/api" exact>
+            <Home setEmployeeToEdit={setEmployeeToEdit} />
+          </Route>
+          <Route path="/api/add-employee">
+            <AddMovie />
+          </Route>
+          <Route path="/api/edit-employee">
+            <EditMovie setEmployeeToEdit={setEmployeeToEdit} />
+          </Route>
+          </div>
+      </Router>
     </div>
   );
 }
